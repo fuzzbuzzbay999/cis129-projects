@@ -4,13 +4,16 @@
 # It ShoULD print a simple short story
 
 #since this isnt java, i guess i have to print chars instead of sting. 
-import time
+
 i=0
 print('Hello, World')
 print('if you are creating a file" + \n +"you dont have to commit after every line')
+print('I dont like python much')\
+print('its a lot simpler ye')
+print('but')
 while True:
   print(i)
   i+=1
   if i>3000:
     break
-print('much faster then java tho')
+print('its much faster then java tho')
