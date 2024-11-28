@@ -42,22 +42,22 @@ def TXTw():
 def TXTr():
     total=0
     with open('grades.txt',mode='r') as grades:
-        print('student \t grade earned')
-        print('*****************************')
-        
-        grade=0
-        for line in grades:
-            #unpack lines[grade count] into grade and the count variables
-            grade,count = line.split()
-            #print the student number  and grade
-            print(f'student #{count} \t got {grade:>8}')
-            #calculate toal
-            total+=(float(grade))
-        #print the data
-        print(f'The total is {total}')
-        print(f'The student count is {count}')
-        print(f'The class average {int(total)/int(count):.3f}')
-
+           print('student \t grade earned')
+           print('*****************************')
+           
+           grade=0
+           for line in grades:
+               #unpack lines[grade count] into grade and the count variables
+               grade,count = line.split()
+               #print the student number  and grade
+               print(f'student #{count} \t got {grade:>8}')
+               #calculate toal
+               total+=(float(grade))
+           #print the data
+           print(f'The total is {total}')
+           print(f'The student count is {count}')
+           print(f'The class average {int(total)/int(count):.3f}')
+    
 
 #*************CSV WRITE******************
 #takes the first and last name, and stores 3 exam grades in a csv file
@@ -84,6 +84,7 @@ def CSVw():
                 #reset index
                 index=0
                 #write the line
+                #ONLY WRITES THE LINE IF 5 VALUES HAD BEEN SUCESSFULLY ENTERED!!!
                 writer.writerow(dataToSave)
                 #reset the dataToSave
                 dataToSave=[]
@@ -92,14 +93,14 @@ def CSVw():
             #test sential and flush the writer.
             if(value=='-99'):
                 sys.exit()
-            elif(value<0):
-                raise ValueError('Grades cant be negative!!!!')
-            
+
             #test if the value type alligns with the format type
             if(FormatType[index]=='int'):
                 try:
                     #if the value should be int TRY to make it an int
                     value=int(value)
+                    if(value<0):
+                        raise ValueError('Grades cant be negative!!!!')
                     #if so, append the value to the dataToSave list
                     dataToSave.append(value)
                 except Exception as error:
@@ -115,7 +116,7 @@ def CSVw():
 
 def main():
     while(True):
-        print('\nT2his menu helps run through the various methods of storing and reading data')
+        print('\nThis menu helps run through two various methods of storing and reading data')
         print('1: Enter a list of grades for an assignment')
         print('2: Read the grade file and display metrics')
         print('3: Enter and store 3 exam grades in a CSV file')
